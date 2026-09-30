@@ -1,0 +1,12 @@
+Esercitazione 3 - Scuola e studenti
+Scenario: gestire circa 1000 studenti con nome, cognome, età e città di residenza.
+
+Funzioni richieste:
+
+aggiunta di uno studente;
+ricerca per cognome;
+ricerca per eta;
+conteggio degli studenti;
+classe Studente con proprieta, toString e classificazione per biennio/triennio;
+interfaccia main con console.
+Branch suggeriti: features/classes/studente, features/classes/scuola e master per l'integrazione.
