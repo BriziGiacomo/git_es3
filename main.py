@@ -1,0 +1,64 @@
+def main():
+    scuola = Scuola()
+    
+    # Aggiungiamo qualche studente di prova
+    scuola.aggiungi_studente(Studente("Mario", "Rossi", 15, "Roma"))
+    scuola.aggiungi_studente(Studente("Anna", "Bianchi", 17, "Milano"))
+    scuola.aggiungi_studente(Studente("Luca", "Verdi", 16, "Torino"))
+
+    while True:
+        print("\n--- GESTIONE SCUOLA ---")
+        print("1. Aggiungi studente")
+        print("2. Cerca per cognome")
+        print("3. Cerca per età")
+        print("4. Mostra conteggio studenti")
+        print("5. Esci")
+        
+        scelta = input("Scegli un'opzione (1-5): ").strip()
+
+        if scelta == "1":
+            nome = input("Inserisci il nome: ").strip()
+            cognome = input("Inserisci il cognome: ").strip()
+            try:
+                eta = int(input("Inserisci l'età: "))
+                citta = input("Inserisci la città di residenza: ").strip()
+                nuovo_studente = Studente(nome, cognome, eta, citta)
+                scuola.aggiungi_studente(nuovo_studente)
+                print("Studente aggiunto con successo!")
+            except ValueError:
+                print("Errore: L'età deve essere un numero intero valido.")
+
+        elif scelta == "2":
+            cognome_cercato = input("Inserisci il cognome da cercare: ").strip()
+            risultati = scuola.cerca_per_cognome(cognome_cercato)
+            if risultati:
+                print(f"\nTrovati {len(risultati)} studenti:")
+                for s in risultati:
+                    print(f"- {s}")
+            else:
+                print("Nessuno studente trovato con questo cognome.")
+
+        elif scelta == "3":
+            try:
+                eta_cercata = int(input("Inserisci l'età da cercare: "))
+                risultati = scuola.cerca_per_eta(eta_cercata)
+                if risultati:
+                    print(f"\nTrovati {len(risultati)} studenti:")
+                    for s in risultati:
+                        print(f"- {s}")
+                else:
+                    print("Nessuno studente trovato con questa età.")
+            except ValueError:
+                print("Errore: Inserisci un numero valido per l'età.")
+
+        elif scelta == "4":
+            print(f"Numero totale studenti iscritti: {scuola.conteggio()}")
+
+        elif scelta == "5":
+            print("Arrivederci!")
+            break
+        else:
+            print("Opzione non valida. Riprova.")
+
+if __name__ == "__main__":
+    main()
